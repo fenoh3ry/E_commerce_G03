@@ -1,7 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+#Item.destroy_all
+	for image_name in (1..10) do 
+
+	Item.create(title: Faker::Creature::Cat.name,
+				description: Faker::Creature::Cat.breed,
+				price: Faker::Commerce.price(range: 0..10.0, as_string: true),
+				image_url: "https://github.com/fenoh3ry/CattoPics-for-ecommerceProject/blob/master/#{image_name}.jpg"
+				)
+	end
