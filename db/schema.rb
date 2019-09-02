@@ -9,7 +9,8 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 2019_09_02_130345) do
+
+ActiveRecord::Schema.define(version: 2019_09_02_221512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,11 +40,22 @@ ActiveRecord::Schema.define(version: 2019_09_02_130345) do
     t.index ["item_id"], name: "index_join_table_cart_items_on_item_id"
   end
 
+  create_table "join_table_order_items", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "item_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_join_table_order_items_on_item_id"
+    t.index ["order_id"], name: "index_join_table_order_items_on_order_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
