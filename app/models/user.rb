@@ -11,8 +11,6 @@ class User < ApplicationRecord
     UserMailer.welcome_email(self).deliver_now
   end
 
-
-  belongs_to :cart
   has_many :items , through: :cart
   has_many :orders
 
