@@ -1,8 +1,19 @@
 <h2> Panier </h2>
 <ul>
-	<% @cart.join_table_cart_item.each do |item| %>
-	<li><%= item.item.title %></li>
+	<% @cart.join_table_cart_item.each do |join| %>
+	<li><%= join.item.title %></li>
+
+
+	<strong>Ajouter le: <%= join.created_at%></strong>
+	<li >Titre: "<%= join.item.title %>"</li> 
+	<li>Description: "<%= join.item.description %>"</li> 
+	<li>Prix: "<%= join.item.price %> $ "</li> 
+	<li>Image_url :  "<%= join.item.image_url %>"</li>
+	<%= button_to "Enlever du panier", join_table_cart_items_path(join.item.id),  method: :destroy%>
+	<br>
+	<br>
 	<% end %>
 </ul>
-
-<p><%= link_to "Retour aux produits", root_path%></p>
+<br>
+<strong> prix total à payer: <%= @sum %> $</strong><br>
+<p ><%= link_to "Retour aux produits", root_path%></p>
