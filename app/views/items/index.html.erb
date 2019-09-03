@@ -1,6 +1,6 @@
 <h1>Bienvenue dans Catto</h1>
 <%if user_signed_in?%>
-	<button> <%= link_to "Mon panier", cart_path(current_user.cart.id)%> </button>
+	<%= button_to "Mon panier", cart_path(current_user.cart.id)%>
 <%end%>
      <% @items.each do |item| %>
 	     <p>Titre: "<%= item.title %>"</p> 
@@ -9,7 +9,7 @@
 	     <p>Image_url :  "<%= item.image_url %>"</p> 
 	     <button> <%= link_to "afficher", item_path(item.id)%> </button>
 	     <%if user_signed_in?%>
-	     <button> <%= link_to "Ajouter a mon panier", join_table_cart_items_path,  method: :post%> </button>
+	     <%= button_to "Ajouter a mon panier", join_table_cart_items_path%> 
 	     <%end%>
 	     <h1>nextItem</h1>
      <%end%>

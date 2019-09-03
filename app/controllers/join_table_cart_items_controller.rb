@@ -1,4 +1,5 @@
 class JoinTableCartItemsController < ApplicationController
+  before_action :set_cart, only: [:create]
   def index
   end
 
@@ -9,21 +10,15 @@ class JoinTableCartItemsController < ApplicationController
   end
 
   def create
-    if user_signed_in?
-      if current_user.cart == nil
-        Cart.create(user_id: current_user.id)
-        puts "Creation du panier pour le nouveau utilisateur"
+    item = Item.find(params[:item_id])
+    @join_table_cart_items = @cart.join_table_cart_item.new(item: item)
+
+    respond_to do |format|
+      if @join_table_cart_items.save
+        format.html {redirect_to @join_table_cart_items.cart, notice: 'Item a été créer avec succés'}
+        format.json { render :show, status: :created, location: @join_table_cart_items}
       end
-      @joinTableCartItems = JoinTableCartItem.new(cart_id: current_user.cart.id , item_id: rand(1..10))
-      if @joinTableCartItems.save
-        redirect_to items_path
-      else
-        puts "x"*100
-        puts 'tsy enregistré'
       end
-    else
-      redirect_to new_user_registration_path
-    end
   end
 
   def update
@@ -35,5 +30,11 @@ class JoinTableCartItemsController < ApplicationController
   def edit
   end
 
+  private
+
+  def set_cart
+    @cart = Cart.find_by(id: session[:cart_id]) || Cart.create
+      session[:cart_id] ||= @cart.id
+  end
 
 end
