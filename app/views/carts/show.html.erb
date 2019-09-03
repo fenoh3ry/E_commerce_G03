@@ -1,2 +1,11 @@
-<h1>Carts#show</h1>
-<p>Find me in app/views/carts/show.html.erb</p>
+<% @cart.join_table_cart_items.each do |join|%>
+	<strong>Acheté le: <%= join.created_at%></strong>
+	<p>Titre: "<%= join.item.title %>"</p> 
+	<p>Description: "<%= join.item.description %>"</p> 
+	<p>Prix: "<%= join.item.price %> $ "</p> 
+	<p>Image_url :  "<%= join.item.image_url %>"</p>
+	<button> <%= link_to "Enlever du panier", join_table_cart_items_path(join.item.id),  method: :destroy%> </button>
+	<p>next</p>
+
+<%end%>
+<strong> prix total à payer: <%= @sum %> $</strong><br>

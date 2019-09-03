@@ -9,17 +9,14 @@ class JoinTableCartItemsController < ApplicationController
   end
 
   def create
-    @joinTableCartItemsController = JoinTableCartItem.new(cart_id: 1, item_id: 2)
-    puts"="*200
-    puts params[:cart_id]
-    puts params[:item_id]
-    puts params[:id]
-    puts params[:user_id]
-    puts current_user.id
-    puts"="*200
     if user_signed_in?
+      if current_user.cart == nil
+        Cart.create(user_id: current_user.id)
+        puts "Creation du panier pour le nouveau utilisateur"
+      end
+      @joinTableCartItemsController = JoinTableCartItem.new(cart_id: current_user.cart.id , item_id: rand(1..10))
       if @joinTableCartItemsController.save
-        redirect_to item_path(params[:item_id])
+        redirect_to items_path
       else
         puts "x"*100
         puts 'tsy enregistré'
