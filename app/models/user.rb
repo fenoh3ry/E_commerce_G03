@@ -5,9 +5,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+
 	after_create :welcome_send
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
   end
+
+
+  belongs_to :cart
+  has_many :items , through: :cart
+  has_many :orders
 
 end
