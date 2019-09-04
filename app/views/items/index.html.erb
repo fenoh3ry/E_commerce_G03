@@ -1,6 +1,12 @@
 <h1>Bienvenue dans Catto</h1>
 <%if user_signed_in?%>
-	<%= button_to "Mon panier", cart_path(current_user.cart.id)%>
+  <!-- find if currend_user has a cart else it create a cart for the user -->
+	<% cart = Cart.find_by(user_id:current_user.id)
+		if !cart
+			Cart.create(user_id:current_user.id)
+		end	
+	%>
+	<a href="<%=cart_path(Cart.find_by(user_id:current_user.id ))%>">mon panier</a>
 <%end%>
      <% @items.each do |item| %>
 	     <p>Titre: "<%= item.title %>"</p> 
@@ -9,7 +15,7 @@
 	     <p>Image_url :  "<%= item.image_url %>"</p> 
 	     <button> <%= link_to "afficher", item_path(item.id)%> </button>
 	     <%if user_signed_in?%>
-	     <%= button_to "Ajouter a mon panier", join_table_cart_items_path%> 
+	     <button id='<%=item.id%>' class="add">ajout a mon panier</button>
 	     <%end%>
 	     <h1>nextItem</h1>
      <%end%>

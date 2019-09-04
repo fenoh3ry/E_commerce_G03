@@ -6,10 +6,11 @@ class CartsController < ApplicationController
   end
 
   def show
+    @cart = Cart.find(params[:id])
     def sum
       sum = 0
-        for i in (0..@cart.join_table_cart_item.length-1)
-          sum = sum + @cart.join_table_cart_item[i].item.price
+        for i in (0..@cart.join_table_cart_items.length-1)
+          sum = sum + @cart.join_table_cart_items[i].item.price
         end
       return sum 
     end
@@ -31,7 +32,9 @@ class CartsController < ApplicationController
   end
 
   def edit
+  
   end
+  
   private
 
     def set_cart

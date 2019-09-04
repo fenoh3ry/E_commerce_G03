@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2019_09_02_221512) do
   end
 
   create_table "join_table_cart_items", force: :cascade do |t|
-    t.integer "quantity", default: 1
     t.bigint "item_id"
     t.bigint "cart_id"
     t.datetime "created_at", precision: 6, null: false
@@ -73,8 +72,4 @@ ActiveRecord::Schema.define(version: 2019_09_02_221512) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "join_table_cart_items", "carts"
-  add_foreign_key "join_table_cart_items", "items"
-  add_foreign_key "join_table_order_items", "items"
-  add_foreign_key "join_table_order_items", "orders"
 end

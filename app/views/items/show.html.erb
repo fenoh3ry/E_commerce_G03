@@ -3,5 +3,6 @@
 	     <p>Description: "<%= @item.description %>"</p> 
 	     <p>Prix: "<%= @item.price %> $ "</p> 
 	     <p>Image_url :  "<%= @item.image_url %>"</p>
-
-	   <%= button_to "Ajouter a mon panier", join_table_cart_items_path(item_id: @item), class:"btn btn-primary"%>
+<%if user_signed_in?%>
+	    <button id='<%=@item.id%>' class="add">ajout a mon panier</button>
+<%end%>
