@@ -13,6 +13,8 @@
 	     <p>Description: "<%= item.description %>"</p> 
 	     <p>Prix: "<%= item.price %> $"</p> 
 	     <p>Image_url :  "<%= item.image_url %>"</p> 
+	     <img src="<%= item.image_url %>">
+	    
 	     <button> <%= link_to "afficher", item_path(item.id)%> </button>
 	     <%if user_signed_in?%>
 	     <button id='<%=item.id%>' class="add">ajout a mon panier</button>
