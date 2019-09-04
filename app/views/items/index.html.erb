@@ -1,15 +1,16 @@
 <h1>Bienvenue dans Catto</h1>
 <%if user_signed_in?%>
-	<%= button_to "Mon panier", cart_path(current_user.cart.id)%>
+	<%= button_to "Mon panier", cart_path(current_user.cart.id) , method: :get%>
 <%end%>
      <% @items.each do |item| %>
 	     <p>Titre: "<%= item.title %>"</p> 
 	     <p>Description: "<%= item.description %>"</p> 
 	     <p>Prix: "<%= item.price %> $"</p> 
-	     <p>Image_url :  "<%= item.image_url %>"</p> 
+	     <p>Image_url :  "<%= item.image_url %>"</p>
+	     <img src="<%= item.image_url %>"> <br>
 	     <button> <%= link_to "afficher", item_path(item.id)%> </button>
 	     <%if user_signed_in?%>
-	     <%= button_to "Ajouter a mon panier", join_table_cart_items_path%> 
+	     <%= button_to "Ajouter a mon panier", join_table_cart_items_path(item_id: item), class:"btn btn-primary"%>
 	     <%end%>
-	     <h1>nextItem</h1>
+	     <br><br>
      <%end%>

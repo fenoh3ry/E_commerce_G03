@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+
   root 'items#index'
+  resources :join_table_order_items
   resources :items
   resources :carts
   resources :orders

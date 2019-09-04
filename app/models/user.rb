@@ -10,8 +10,8 @@ class User < ApplicationRecord
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
   end
-
-  has_many :items , through: :cart
+  has_one :cart
+  has_many :items
   has_many :orders
 
 end
