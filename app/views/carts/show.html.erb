@@ -16,6 +16,7 @@
 </ul>
 <br>
 <strong> prix total à payer: <%= @sum %> $</strong><br>
+<button><%= link_to "Passer le commande", join_table_order_items_path, method: :post %></button><br>
 <p ><%= link_to "Retour aux produits", root_path%></p>
 
 
