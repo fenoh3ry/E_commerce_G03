@@ -1,11 +1,13 @@
-<h1>Les Images Commandées</h1>
+<strong>Vous avez belle et bien payé. Votre commande est passé, regardez votre mail.</strong><br>
+
+<h1>Tout ce que vous avez commandé chez nous</h1>
 <% current_user.orders.each do |order|%>
-	<% order.join_table_order_items.each do |join_item| %>
-		<strong> commandé le <%= join_item.created_at %></strong>
-		<p>Titre: "<%= join_item.item.title %>"</p> 
-		<p>Description: "<%= join_item.item.description %>"</p> 
-		<p>Prix: "<%= join_item.item.price %> $"</p> 
-		<img src="<%= join_item.item.image_url %>"> <br>
-		<br><br>
-	<%end%>
+  <% order.join_table_order_items.each do |join_item| %>
+    <strong> commandé le <%= join_item.created_at %></strong>
+    <p>Titre: "<%= join_item.item.title %>"</p> 
+    <p>Description: "<%= join_item.item.description %>"</p> 
+    <p>Prix: "<%= join_item.item.price %> $"</p> 
+    <img src="<%= join_item.item.image_url %>"> <br>
+    <br><br>
+  <%end%>
 <%end%>
