@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
-	has_many :carts
-	has_many :orders
+	has_many :join_table_cart_items
+	has_many :carts, through: :join_table_cart_items
+	has_many :join_table_order_items
+	has_many :orders, through: :join_table_order_items
 	validates :title, presence: true, length: { in: 3..14}
     validates :description, presence: true, length: {minimum: 10, maximum: 100}
     validates :image_url, presence: true, format: {with: /\.(png|jpg|gif)\Z/i}

@@ -1,2 +1,12 @@
-<h1>Orders#create</h1>
-<p>Find me in app/views/orders/create.html.erb</p>
+<h2>Thanks, you paid <strong><% @sum %></strong>!</h2>
+<h1>Les Images Commandées</h1>
+<% current_user.orders.each do |order|%>
+	<% order.join_table_order_items.each do |join_item| %>
+		<strong> commandé le <%= join_item.created_at %></strong>
+		<p>Titre: "<%= join_item.item.title %>"</p> 
+		<p>Description: "<%= join_item.item.description %>"</p> 
+		<p>Prix: "<%= join_item.item.price %> $"</p> 
+		<img src="<%= join_item.item.image_url %>"> <br>
+		<br><br>
+	<%end%>
+<%end%>
