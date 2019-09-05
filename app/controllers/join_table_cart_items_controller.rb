@@ -10,15 +10,11 @@ class JoinTableCartItemsController < ApplicationController
   end
 
   def create
-    @item = params[:item_id]
-    @join_table_cart_items = @cart.join_table_cart_item.new(item: @item)
-
-        if @join_table_cart_items.save
-          redirect_to root_path, notice: 'Item a été créer avec succés'
-        else
-          puts "*"*100
-          puts "tsy enregistré le (@join_table_cart_items = @cart.join_table_cart_item.new(item: @item))"
-        end
+    @item = Item.find(params[:item_id])
+    @join_table_cart_items = JoinTableCartItem.new(item: @item, cart: @cart)
+      if @join_table_cart_items.save
+        redirect_to root_path, notice: 'Item a été créer avec succés'
+      end
   end
 
   def update

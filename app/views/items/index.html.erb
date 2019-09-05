@@ -1,16 +1,21 @@
 <h1>Bienvenue dans Catto</h1>
 <%if user_signed_in?%>
-	<%= button_to "Mon panier", cart_path(current_user.cart.id) , method: :get%>
+	<%if current_user.cart == nil%>
+		<strong><%= link_to"Mon panier", root_path%></strong>
+	<%else%>
+		<%= button_to "Mon panier", cart_path(current_user.cart.id) , method: :get%>
+		<a href="/carts/<%=current_user.cart.id%>">Panier</a>
+	<%end%>	
 <%end%>
-     <% @items.each do |item| %>
-	     <p>Titre: "<%= item.title %>"</p> 
-	     <p>Description: "<%= item.description %>"</p> 
-	     <p>Prix: "<%= item.price %> $"</p> 
-	     <p>Image_url :  "<%= item.image_url %>"</p>
-	     <img src="<%= item.image_url %>"> <br>
-	     <button> <%= link_to "afficher", item_path(item.id)%> </button>
-	     <%if user_signed_in?%>
-	     <%= button_to "Ajouter a mon panier", join_table_cart_items_path(item_id: item), class:"btn btn-primary"%>
-	     <%end%>
-	     <br><br>
-     <%end%>
+    <% @items.each do |item| %>
+	    <p>Titre: "<%= item.title %>"</p> 
+	    <p>Description: "<%= item.description %>"</p> 
+	    <p>Prix: "<%= item.price %> $"</p> 
+	    <p>Image_url :  "<%= item.image_url %>"</p>
+	    <img src="<%= item.image_url %>"> <br>
+	    <button> <%= link_to "afficher", item_path(item.id)%> </button>
+	    <%if user_signed_in?%>
+	    	<%= button_to "Ajouter a mon panier", join_table_cart_items_path(item_id: item.id), class:"btn btn-primary"%>
+	    <%end%>
+	    <br><br>
+    <%end%>
