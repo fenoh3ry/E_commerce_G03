@@ -6,3 +6,5 @@
 <%if user_signed_in?%>
 	    <button id='<%=@item.id%>' class="add">ajout a mon panier</button>
 <%end%>
+
+<%= image_tag @item.pic, alt: 'pic' %>

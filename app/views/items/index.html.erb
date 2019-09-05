@@ -1,5 +1,8 @@
+
 <h1>Bienvenue dans Catto</h1>
 <%if user_signed_in?%>
+<strong><%= link_to "Ajouter un nouveau Cat_pic", new_item_path %></strong><br>
+
   <!-- find if currend_user has a cart else it create a cart for the user -->
 	<% cart = Cart.find_by(user_id:current_user.id)
 		if !cart
@@ -12,11 +15,14 @@
 	     <p>Titre: "<%= item.title %>"</p> 
 	     <p>Description: "<%= item.description %>"</p> 
 	     <p>Prix: "<%= item.price %> $"</p> 
-	     <p>Image_url :  "<%= item.image_url %>"</p> 
-	     <img src="<%= item.image_url %>"><br>
+	     <% if item.pic.attached? == true%>
+	     <img class="a" <%= image_tag item.pic, alt: 'pic' %>
+	     <br>
+	     <%end%>
+
 	     <button> <%= link_to "afficher", item_path(item.id)%> </button>
 	     <%if user_signed_in?%>
 	     <button id='<%=item.id%>' class="add">ajout a mon panier</button>
 	     <%end%>
-	     <h1>nextItem</h1>
+	     <h1>=========================</h1>
      <%end%>

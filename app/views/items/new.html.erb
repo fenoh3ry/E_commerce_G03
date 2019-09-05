@@ -1,0 +1,34 @@
+
+
+<% if user_signed_in? %>
+
+  <h1>Ajouter un nouveau cat_pic </h1>
+  <strong>Inserer d'abord l'apropos de votre cat_pic</strong>
+
+  <%= form_for @item do |f| %>
+
+    <div class="field">
+      <%= f.label :Titre %> 
+      <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
+    </div>
+
+     <div class="field">
+      <%= f.label :description %>
+      <%= f.text_area :description, autofocus: true, autocomplete: "description" %>
+    </div>
+
+     <div class="field">
+      <%= f.label :prix %>
+      <%= f.number_field :price, autofocus: true, autocomplete: "price" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Créer" %>
+    </div>
+  <% end %>
+
+<% else %>
+  <h1>Vous devez connecter pour pouvoir ajouter un photos</h1>
+  <a href="<%= new_user_session_path %>" class="btn btn-outline-success my-2 my-sm-0" type="submit" >Se connecter</a>
+  <a href="<%= new_user_registration_path %>" class="btn btn-outline-success my-2 my-sm-0" type="submit" >Créer un compte</a>
+<%end%>
