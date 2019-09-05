@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
     before_action :set_cart, only: [:show]
+    before_action :authenticat_user!, exept: [:index, :show]
  
   def index
     @carts = Cart.all
