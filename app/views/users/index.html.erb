@@ -1,0 +1,27 @@
+<h1>DASHBOARD ADMIN</h1>
+		<table>
+			<tr>
+				<td><strong>Item_id</strong></td>
+				<td><strong>Titre</strong></td>
+				<td><strong>Prix</strong></td>
+				<td><strong>Nombre d'achat</strong></td>
+			</tr>
+			<% @item_id = [] %>
+			<% @order.each do |order| %>
+				<% order.items.each do |item|%>
+					<%@item_id << item.id %>
+						<tr>
+							<td><%= item.id %></td>
+							<td><%= item.title %></td>
+							<td><%= item.price %> $</td>
+							<td><%= item.orders.count %></td>
+						</tr>
+
+				<% end %>
+			<% end %>
+			
+		</table>
+
+		<h1> nombre total des images vendus : <%= @item_id.count %></h1>
+
+

@@ -1,0 +1,17 @@
+
+
+
+
+<% if current_user && current_user.admin %>
+
+<h1>ESPACE ADMINISTRATEUR</h1>
+<ul>
+	<li><%= link_to "Dashboard", users_path %></li>
+</ul>
+
+
+<%end%>
+
+
+
+

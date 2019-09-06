@@ -1,15 +1,51 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>ECommerceG03</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- TITRE -->
+    <title> CATTO
+    </title>
+    <!-- Important pour medias queries -->
+    <meta content="initial-scale=1.0, width=device-width" name="viewport">
+    <!-- Police de Caractère -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- FEUILLES DE STYLE -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- scrollmagic -->
+
+<body>
+
+
+<!--NEW METHODES FOR PAGES-->
+    <style>
+    .a{
+        height: 243px;
+        width: 195px;
+    }
+    </style>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <div><%= link_to"HOME", root_path %></div>
+         
   </head>
 
   <body>
+    <%= render "layouts/admin" %>
+    <%= render "layouts/authentication" %>
+ 
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+     
     <%= yield %>
+
   </body>
 </html>
+
