@@ -1,10 +1,10 @@
 <h1><%= @item.title %></h1>
-	     <p>Titre: "<%= @item.title %>"</p> 
-	     <p>Description: "<%= @item.description %>"</p> 
-	     <p>Prix: "<%= @item.price %> $ "</p> 
-	     <p>Image_url :  "<%= @item.image_url %>"</p>
+	<p>Titre: "<%= @item.title %>"</p> 
+	<p>Description: "<%= @item.description %>"</p> 
+	<p>Prix: "<%= @item.price %> $ "</p> 
+	<% if @item.pic.attached? == true%>
+	    <img class="a" <%= image_tag @item.pic, alt: 'pic' %><br>
+	<%end%>
 <%if user_signed_in?%>
 	    <button id='<%=@item.id%>' class="add">ajout a mon panier</button>
 <%end%>
-
-<%= image_tag @item.pic, alt: 'pic' %>
